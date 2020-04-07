@@ -1,0 +1,1 @@
+lo priemro que se hace es crear toda la estructura, es decir, las carpetas app, models, public, routes, dentro de models creo el archivo task.js donde voy a modelar las tareas, en la raiz src creo tambien los archivos database.js e index.js usados para conectar a la base de datos y tambien para definir el servidor express.

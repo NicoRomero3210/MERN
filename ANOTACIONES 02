@@ -1,0 +1,71 @@
+Primero isntalo las dependencias concernientes a reactJS
+En app tiro todo el codigo de react, para eso creo un archivo que arranque la interfaz llamado index.js, despues instalo webpack como dependencia de desarrollo
+
+npm install webpack -D
+npm install webpack-cli -D
+
+Despues de eso ejecuto el comando webpack que defini en package.json para que cree el archivo bundle.js en public
+
+Una vez hecho esto agarro e instalo reactJS
+
+npm install react react-dom -D Lo de D es opcional, si tengo ganas lo pongo si no no
+
+despues empiezo a toquetear el index.js y le agrego al index.html en public la etiqueta script que vincula ese coso con el index.js de app.
+
+lo otro seria instalar babel para que se pueda traducir el jsx a js
+
+npm i babel-core babel-loader babel-preset-env babel-preset-react -D
+
+EN REALIDAD COMO BABEL CAMBIO DE VERSION AHORA TENGO QUE ISNTALAR TMB ESTAS BOSTAS
+
+npm install --save-dev @babel/core
+npm i @babel/preset-react -D 
+npm i @babel/preset-env -D
+
+ahora creo el archivo .babelrc para decir que es lo que voy a traducir
+
+Y EN EL .babelrc VA ASI
+
+"@babel/preset-env","@babel/preset-react"
+
+En el package json al comando de webpack le agrego el comando --watch para que vigile los cambios
+
+Despues creo el App.js en la carpeta app, este archivo va a ser el componente principal de nuestra app, y eso se lo importa al index.js de app para que se lo pase al bundle.js
+
+traigo a materialize y lo pongo en el html el css se pone en el head y el script se pone arriba del script de bundle.js si o si
+
+DEspues de esto empiezo a armar la aplicacion en el archivo App.js, hago todo lo del formulario y creo el metodo addTask, tambien traigo el constructor para poder poner lo del estado y hago el bind con el addTask para que no se pierda react, ademas de esto en el metodo addTask pongo el preventDefault para que no se refresque la pagina
+
+Despues de eso creo todo lo que se refiere a agarrar los datos de los inputs para poder mandaros a la bd
+
+Para poder tomar todos los datos de a bd ni bien arranca la app utilizo el componente componentDidMount() para indicarle que ejecute el fetch que permite recuperar todos los elementos de la bd.
+
+Para recorrer el arreglo y mostrar todas las bostas en una tabla mirar la tabla qu hice ahi, de esa forma se listan todos los elemntos de un arreglo. Tener en cuenta que apra poder meter los elemntos de la bd al estado le tuve que agregar una nueva propiedad tasks que es un arreglo al cual lo lleno con el metodo fetch y es ese arreglo el que le paso a la tabla para que muestre su contenido
+
+Despues de eso apra poder refrescar el conotenido de la bd en la pantalla al agregar una tarea, le tnego que decir que despues de agregar la tarea ejecute la ufncion fetchTasks() nuevamente, esto se hace dentro de la funcion addTask()
+
+para poder agregar los botoncitos de borrado y edicion utilizo el coso de js que importe d ematerialize, eso me habilita unas etiqeutas i que al ponerle el className que le puse ahi agarra los iconitos
+
+
+dentro de los buttons puse un style={{padding :'4px'}}, esto se permite en react para no hacer un archivo css aparte, pero siempre tengo qeu tratar que sean pequeño detalles como este nomas porque sino se va al choto y no se entiende nada
+
+para borrar un dato voy al boton de borrado y le asocio el evento onClick, en este le digo que haga la funcion flecha () => this.deleteTask(task.id) en donde le paso el id de la tarea que corresponde a la fila de ese boton(MIRAR COMO HICE PARA EL TEMA DEL TP DE InvOPERATIVA). La funcion deleteTask() la defino antes en la zona de funciones
+
+despues defino la tarea edit para poder vincularla con el boton edit, eta funcion lo unico que hace es traerme los datos de la tarea seleccionada al form, despues con el boton send se hace la magia ya que modifico la funcion addTask agregandole un if y tmb agrego un atributo _id al state asi, si es que ese atributo esta en blanco y apreto el bonton send entonces se trata de un alta, caso contrario seria qeu aprete el boton edit y le estoy pasando el id de la tarea correspondiente al estado y eso significa que quiero editar esa tarea, eso lo interpreta el addTask con el if, asi, cuando aprete send lo que va a solicitar es un PUT no un POST.
+
+VER COSAS DE SUPERAGENT O ACIOS PARA EL FETCH EN LAS ACTUALIZACIONES
+
+
+PARA COSAS DE SEGURIDAD O ACCESO DE USUARIOS ESTUDIAR JSON WEB TOKENS ESTO SIRVE PARA QUE CADA VEZ SE HAGA UNA REQUEST SE COMPRUEBE EL TOKEN Y TE PERMITA ACCEDER, O SI NO UN LOGIN, OTRA PUEDE SER GRAPHQL
+
+
+
+
+
+
+
+
+
+
+
+

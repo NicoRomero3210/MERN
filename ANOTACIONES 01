@@ -1,0 +1,60 @@
+lo priemro que se hace es crear toda la estructura, es decir, las carpetas src y dentro de esta creo las carpetas app, models, public, routes, dentro de models creo el archivo task.js donde voy a modelar las tareas, en la raiz src creo tambien los archivos database.js e index.js usados para conectar a la base de datos y tambien para definir el servidor express.
+En app se pone todo el codigo react, y eso se envia a public para poder convertir el jsx en js entendible para el navegador
+
+Primero inicio nodejs e instalo express
+
+npm init --yes
+npm install express
+
+Despues de esto armo la estructura del servidor en index.js y creo el srcipt start en el package.json
+
+Instalo nodemon con el coando -D para ponerlo en dev dependecies en el package.json, esto se hace para decir que mi app no depende de nodemon, que este solo ayuda a ejecutar la app de forma mas comoda
+
+npm install nodemon -D
+
+Despues de esto agarro y le configuro el peurto en la seccion de settings.
+
+MUY GROSO, CON LAS COMILLAS `` QUE SON LAS COMILLAS ESPECIALES DE JS PUEDO CONCATENAR VARIABLES SIN TENER QUE HACER MUCHO QUILOMBO DICIENDOLE QUE LO QUE ESTA ENTRE LLAVES Y EL SIMBOLO $ NO SON CARACTERES, ALGO ASI
+
+console.log(`ALto escabio ${app.get(escabiador)}`);
+
+Ahora instalo morgan
+
+npm install morgan
+
+Despues de es lo importo en index.js y lo defino en la seccion middleware
+
+Despeus agrego el middleware express.json() que me permite parsear todo a json para que lo que se le pasa al servidor tiene que estar en JSON para que este lo entienda.
+
+Empiezo a definir las rutas poniendo en el archivo de routes task.routes.js el require de express.Router() y le pongo el exports para que pueda ser importado, esto se sa en la seccion routes del index.js para poder definir de donde va a sacar las ruas el servidor con el app.use(require('./routes/task.routes'))
+
+Despues en public creo el index.html que va a ser donde pongamos los componentes de react, aca en esta carpeta va todo eso, sea css y cosas asi
+
+Despues agrego el modulo path en index.js, esto no se instala porque ya viene con express, para poder obtener las rutas sin ningun conflicto dependiente del SO. Esto se usa en static files con app.use(express.static(path.join(__dirname, 'public')))
+
+Ahora arranco a hacer las rutas para traer cosas de la bd, primero hago la conexion a la db en el archivo database.js para esto tengo que instalar el modulo de mongoose con npm
+
+npm install mongoose
+
+ahora voy a task.js en la carpeta models y empiezo a modelar los datos y los exporto, una vez que importo este modelo en las rutas voy a poder hacer consultas a la bd con dicho modelo
+
+importo entonces el modelo en task.routes en la carpeta routes y empiezo a armar mis rutas
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
